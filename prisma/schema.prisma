@@ -21,9 +21,23 @@ model User {
   firstName String?
   lastName  String?
 
-  @@map("users")
+  // sessions UserSession[]
+
   bookmarks Bookmark[]
+
+  @@map("users")
 }
+
+// model UserSession {
+//   id        Int      @id @default(autoincrement())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+
+//   userId Int
+//   user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+//   @@map("user_sessions")
+// }
 
 model Bookmark {
   id        Int      @id @default(autoincrement())
