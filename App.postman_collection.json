@@ -1,0 +1,289 @@
+{
+	"info": {
+		"_postman_id": "913bca8f-9436-4397-a4e9-c76284e025a4",
+		"name": "NestJS Learning",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24655354",
+		"_collection_link": "https://warped-firefly-995022.postman.co/workspace/New-Team-Workspace~3cf70f67-0537-492a-9e24-c25e350f75ad/collection/24655354-913bca8f-9436-4397-a4e9-c76284e025a4?action=share&source=collection_link&creator=24655354"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"huehue@dogesh.com\",\n    \"password\":\"secret\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/auth/signup",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"huehue@dogesh.com\",\n    \"password\":\"secrettat\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/auth/signin",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Me",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base-url}}/users/me",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit User",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Dogesh\",\n    \"lastName\": \"Khanna\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/users/{{userId}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"users",
+						"{{userId}}"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{userId}}",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bookmark Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"History of Dogesh\",\n    \"link\": \"https://dogesh.huehue\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/bookmarks",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"bookmarks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bookmark Update",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Dogesh is the best known entity all over the world\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/bookmarks/{{bookmarkId}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"bookmarks",
+						"{{bookmarkId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bookmark Get All",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Dogesh is the best known entity all over the world\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/bookmarks",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"bookmarks"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bookmark Get By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base-url}}/bookmarks/{{bookmarkId}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"bookmarks",
+						"{{bookmarkId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bookmark Get By ID Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base-url}}/bookmarks/{{bookmarkId}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"bookmarks",
+						"{{bookmarkId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiaHVlaHVlQGRvZ2VzaC5jb20iLCJpYXQiOjE2OTg4MjU1MTMsImV4cCI6MTY5ODgyNjQxM30.KmwBOkSgfpwujgAtJmBtZ1ZMQOJctjRwGjpURAFMQJk",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base-url",
+			"value": "localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "userId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "bookmarkId",
+			"value": "2",
+			"type": "string"
+		}
+	]
+}

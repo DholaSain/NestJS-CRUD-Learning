@@ -1,4 +1,4 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateBookmarkDto, EditBookmarkDto } from './dto';
 import { PrismaService } from '../prisma/prisma.service';
 
@@ -26,10 +26,13 @@ export class BookmarkService {
                 id: bookmarkId,
             },
         });
-        if (!bookmark || bookmark.userId !== userId) {
-            throw new ForbiddenException('Access to this resource is forbidden');
+        if (!bookmark) {
+            throw new NotFoundException('Bookmark not found');
         }
 
+        if (bookmark && bookmark.userId !== userId) {
+            throw new ForbiddenException('Access to this resource is forbidden');
+        }
         return this.prisma.bookmark.update({
             where: {
                 id: bookmarkId,
@@ -40,8 +43,8 @@ export class BookmarkService {
         });
     }
 
-    getBookmarks(userId: number) {
-        return this.prisma.bookmark.findMany({
+    async getBookmarks(userId: number) {
+        return await this.prisma.bookmark.findMany({
             where: {
                 userId,
             },
@@ -49,13 +52,23 @@ export class BookmarkService {
 
     }
 
-    getBookmarkById(userId: number, bookmarkId: number) {
-        return this.prisma.bookmark.findFirst({
+    async getBookmarkById(userId: number, bookmarkId: number) {
+        const bookmark = await this.prisma.bookmark.findFirst({
             where: {
                 id: bookmarkId,
                 userId,
             },
         });
+
+        if (!bookmark) {
+            throw new NotFoundException('Bookmark not found');
+        }
+
+        if (bookmark && bookmark.userId !== userId) {
+            throw new ForbiddenException('Access to this resource is forbidden');
+        }
+
+        return bookmark;
     }
 
     async deleteBookmark(userId: number, bookmarkId: number) {
@@ -64,7 +77,11 @@ export class BookmarkService {
                 id: bookmarkId,
             },
         });
-        if (!bookmark || bookmark.userId !== userId) {
+        if (!bookmark) {
+            throw new NotFoundException('Bookmark not found');
+        }
+
+        if (bookmark && bookmark.userId !== userId) {
             throw new ForbiddenException('Access to this resource is forbidden');
         }
 
